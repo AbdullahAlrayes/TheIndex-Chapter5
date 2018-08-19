@@ -7,6 +7,7 @@ import Sidebar from "./Sidebar";
 import Loading from "./Loading";
 import AuthorsList from "./AuthorsList";
 import AuthorDetail from "./AuthorDetail";
+import BookList from "./BookList";
 
 const instance = axios.create({
   baseURL: "https://the-index-api.herokuapp.com"
@@ -42,7 +43,6 @@ class App extends Component {
     } else {
       return (
         <Switch>
-          <Redirect exact from="/" to="/authors" />
           <Route path="/authors/:authorID" component={AuthorDetail} />
           <Route
             path="/authors/"
@@ -50,6 +50,9 @@ class App extends Component {
               <AuthorsList {...props} authors={this.state.authors} />
             )}
           />
+          <Route path="/books/:color/" component={BookList} />
+          <Route path="/books/" component={BookList} />
+          <Redirect exact from="/" to="/authors" />
         </Switch>
       );
     }
